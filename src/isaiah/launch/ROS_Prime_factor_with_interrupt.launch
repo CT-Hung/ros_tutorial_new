@@ -1,0 +1,24 @@
+<launch>
+
+    <!-- Setup file -->
+    <arg name="param_random_file" default="param_createRandomNumber"/>
+
+    <!-- Node --> 
+    <node name="createRandomNumber" pkg="cthung" type="createRandomNumber.py" output="screen" clear_params="true" required="true">
+        <rosparam command="load" file="$(find cthung)/config/$(arg param_random_file).yaml" />
+    </node>
+
+
+
+    <!-- Setup file -->
+    <arg name="param_file" default="param_ROS_Prime_factor_with_interrupt"/>
+
+    <!-- Node --> 
+    <node name="ROS_Prime_factor_with_interrupt" pkg="isaiah" type="ROS_Prime_factor_with_interrupt" output="screen" clear_params="true" required="true">
+        <rosparam command="load" file="$(find isaiah)/config/$(arg param_file).yaml" />
+    </node>
+
+
+
+</launch>
+

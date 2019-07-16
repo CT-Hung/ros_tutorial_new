@@ -122,7 +122,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/isaiah.cpp
+#   src/${PROJECT_NAME}/cthung.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -133,7 +133,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/isaiah_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/cthung_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -190,10 +190,25 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_isaiah.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_cthung.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+#add_executable(pubStringMsg src/pubStringMsg.cpp)
+#target_link_libraries(pubStringMsg ${catkin_LIBRARIES})
+
+add_executable(dealingStringMsg src/dealingStringMsg.cpp)
+target_link_libraries(dealingStringMsg ${catkin_LIBRARIES})
+# don't know what is this
+# add_dependencies(dealingStringMsg beginner_tutorials_generate_messages_cpp)
+
+add_executable(ROS_Prime_factor_decomposition src/ROS_Prime_factor_decomposition.cpp)
+target_link_libraries(ROS_Prime_factor_decomposition ${catkin_LIBRARIES})
+
+
+add_executable(ROS_Prime_factor_with_interrupt src/ROS_Prime_factor_with_interrupt.cpp)
+target_link_libraries(ROS_Prime_factor_with_interrupt ${catkin_LIBRARIES})
+
