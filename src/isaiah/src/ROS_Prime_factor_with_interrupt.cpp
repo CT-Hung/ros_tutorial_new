@@ -67,7 +67,7 @@ void ROS_Prime_factor_with_interrupt::number_msg_callback(const std_msgs::Int64:
     int tmp = msg->data; 
 //    cout << "I heard: " << tmp << endl;
 //    vector<int> ans;
-    
+    interrupt = true;    
 
     Prime_class temp_prime_class = Prime_class(tmp, input_id);
     input_id++;
@@ -92,13 +92,22 @@ void ROS_Prime_factor_with_interrupt::number_msg_callback(const std_msgs::Int64:
 void ROS_Prime_factor_with_interrupt::Iterate(const ros::TimerEvent&)
 {
     cout << "loop "<< endl;
-    while(!dealing_list.empty()){
+
+    interrupt = false;
+
+    while(!dealing_list.empty() && interrupt == false){
     
         Prime_class &temp_prime_class = dealing_list.back();
         prime_factor_decomposition(temp_prime_class);
-        temp_prime_class.printout();
 
-        dealing_list.pop_back();
+        if (temp_prime_class.current_number == 1){
+            temp_prime_class.output_id = output_id;
+            output_id++;
+
+            temp_prime_class.printout();
+            dealing_list.pop_back();
+            cout << "\n" << endl;
+        }
 
     }
 }
@@ -109,6 +118,18 @@ int main (int argc, char** argv)
 {
     prime_number_list.clear();
     prime_number_list.push_back(2);
+    //test loop function
+    
+    
+//    Prime_class temp_prime_class = Prime_class(8767, 100);
+//    dealing_list.push_back(temp_prime_class);
+    
+//    temp_prime_class = Prime_class(87617, 100);
+//    dealing_list.push_back(temp_prime_class);
+    
+//    temp_prime_class = Prime_class(82767, 100);
+//    dealing_list.push_back(temp_prime_class);
+    //end testing
 
     // Initialize ROS
     ros::init(argc, argv, "ROS_Prime_factor_with_interrupt_node");
@@ -215,17 +236,26 @@ int extend_prime_number_list() {
 
 
 std::vector<int> prime_factor_decomposition(Prime_class &input_prime_class) {
-    vector<int> &prime_factor = input_prime_class.prime_factors;
-    //prime_factor.clear();
     
-
-
+   
+    vector<int> &prime_factor = input_prime_class.prime_factors;
+   
+    if (interrupt == true){
+        return prime_factor;
+    } 
+   
     int &examined_number = input_prime_class.current_number;
+
+    if(examined_number==1){
+        return prime_factor; 
+    }
+
+
     int &i = input_prime_class.prime_number_list_index; 
     bool run = true;
     
     //devide by the prime number list
-    while(run){
+    while(run && interrupt == false){
         if(examined_number % prime_number_list.at(i) == 0){
             examined_number = examined_number/prime_number_list.at(i);
             if(examined_number == 1){

@@ -29,6 +29,6 @@ void Prime_class::printout(){
     }
     cout << endl;
     cout << "input_id " << input_id << endl;
-    cout << "current_number " << current_number << endl;
-    cout << endl; 
+    cout << "output_id " << output_id << endl;
+//    cout << "current_number " << current_number << endl; 
 }
