@@ -23,7 +23,7 @@ std::vector<int> prime_factor_decomposition(Prime_class &input_prime_class);
 int input_id = 0;
 int output_id = 0;
 bool interrupt = false;
-
+std::vector<Prime_class> dealing_list;
 
 /*  Constructor  */
 ROS_Prime_factor_with_interrupt::ROS_Prime_factor_with_interrupt()
@@ -69,11 +69,13 @@ void ROS_Prime_factor_with_interrupt::number_msg_callback(const std_msgs::Int64:
 //    vector<int> ans;
     
 
-    Prime_class test_prime_class = Prime_class(tmp, input_id);
+    Prime_class temp_prime_class = Prime_class(tmp, input_id);
     input_id++;
-    test_prime_class.prime_factors = prime_factor_decomposition(test_prime_class);
+
+    dealing_list.push_back(temp_prime_class);
+//    temp_prime_class.prime_factors = prime_factor_decomposition(temp_prime_class);
    
-    test_prime_class.printout();
+//    temp_prime_class.printout();
    
     
 
@@ -90,6 +92,15 @@ void ROS_Prime_factor_with_interrupt::number_msg_callback(const std_msgs::Int64:
 void ROS_Prime_factor_with_interrupt::Iterate(const ros::TimerEvent&)
 {
     cout << "loop "<< endl;
+    while(!dealing_list.empty()){
+    
+        Prime_class &temp_prime_class = dealing_list.back();
+        prime_factor_decomposition(temp_prime_class);
+        temp_prime_class.printout();
+
+        dealing_list.pop_back();
+
+    }
 }
 
 /* main function */ 
