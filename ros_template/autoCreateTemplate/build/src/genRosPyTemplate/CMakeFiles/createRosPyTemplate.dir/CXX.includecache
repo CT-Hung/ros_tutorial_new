@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yufen/ros_tutorial_new/ros_template/autoCreateTemplate/src/genRosPyTemplate/createRosPyTemplate.cpp
+iostream
+-
+stdlib.h
+-
+sstream
+-
+string
+-
+fstream
+-
+
