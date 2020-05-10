@@ -1,0 +1,8 @@
+prefix=/home/yufen/ros_tutorial_new/devel
+
+Name: chenlin
+Description: Description of chenlin
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

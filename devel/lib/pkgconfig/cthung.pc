@@ -1,0 +1,8 @@
+prefix=/home/yufen/ros_tutorial_new/devel
+
+Name: cthung
+Description: Description of cthung
+Version: 0.0.0
+Cflags: -I/home/yufen/ros_tutorial_new/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

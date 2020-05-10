@@ -1,0 +1,8 @@
+prefix=/home/yufen/ros_tutorial_new/install
+
+Name: lin
+Description: Description of lin
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

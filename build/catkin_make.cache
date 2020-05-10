@@ -1,0 +1,2 @@
+chenlin:cthung:hw:isaiah:lin:tychien:weiyu:yufen
+-DCATKIN_DEVEL_PREFIX=/home/yufen/ros_tutorial_new/devel -DCMAKE_INSTALL_PREFIX=/home/yufen/ros_tutorial_new/install -G Unix Makefiles
