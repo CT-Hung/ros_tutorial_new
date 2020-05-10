@@ -1,0 +1,18 @@
+<launch>
+    <!-- Setup file -->
+    <arg name="param_file" default="param_hw1"/>
+
+    <!-- Node --> 
+    <node name="hw1" pkg="yufen" type="hw1" output="screen" clear_params="true" required="true">
+        <rosparam command="load" file="$(find yufen)/config/$(arg param_file).yaml" />
+    </node>
+
+    <!-- Setup file -->
+    <arg name="param_pub_file" default="param_pubStringMsg"/>
+
+    <!-- Node --> 
+    <node name="pubStringMsg" pkg="cthung" type="pubStringMsg" output="screen" clear_params="true" required="true">
+        <rosparam command="load" file="$(find cthung)/config/$(arg param_pub_file).yaml" />
+    </node>
+</launch>
+
