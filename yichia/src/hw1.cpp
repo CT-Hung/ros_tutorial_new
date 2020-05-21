@@ -9,10 +9,8 @@
 #include<vector>
 using namespace std;
 
-int main(int argc, char **argv){
-    ros::init(argc, argv, "hw1");
-    string inputString = "";
-    cin>>inputString;
+void StringMsgCallback(const std_msgs::String::ConstPtr& msg){
+    String inputString = msg;
     istringstream in(inputString);
     vector<string> splitString;
     string partStr;
@@ -23,10 +21,14 @@ int main(int argc, char **argv){
     _Float64 numFloatLat = stof(splitString[6]);
     _Float64 numFloatSpeed = stof(splitString[10]);
     _Float64 numFloatHeading = stof(splitString[14]);
-    cout<<"NAV_LON "<<numFloatLon<<"\n";
-    cout<<"NAV_LAT "<<numFloatLat<<"\n";
-    cout<<"NAV_SPEED "<<numFloatSpeed<<"\n";
-    cout<<"NAV_HEADING "<<numFloatHeading<<"\n";
+    ROS_INFO("NAV_LON ", numFloatLon, "NAV_LAT ", numFloatLat, "NAV_SPEED ", numFloatSpeed, "NAV_HEADING ", numFloatHeading, "\n");
+
+}
+int main(int argc, char **argv){
+    ros::init(argc, argv, "hw1");
+    ros::NodeHandle n;
+    ros::Subscriber sub = n.subscribe("pubStringMsg", 1000, StringMsgCallback);
+    ros::spin();
     return 0;
 
 }
