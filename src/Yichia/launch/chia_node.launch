@@ -1,0 +1,10 @@
+<launch>
+    <!-- Setup file -->
+    <arg name="param_file" default="param_chia_node"/>
+
+    <!-- Node --> 
+    <node name="chia_node" pkg="Yichia" type="chia_node" output="screen" clear_params="true" required="true">
+        <rosparam command="load" file="$(find Yichia)/config/$(arg param_file).yaml" />
+    </node>
+</launch>
+
